@@ -37,6 +37,22 @@
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(0,0,0,0.25);
     }
+
+    button {
+      margin-top: 30px;
+      font-size: 20px;
+      padding: 10px 20px;
+      background-color: #c71585;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #a0146d;
+    }
   </style>
 </head>
 <body>
@@ -65,9 +81,13 @@
 
   <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="Букет роз для Айжан">
 
-  <audio autoplay loop>
+  <!-- Музыка -->
+  <audio id="bg-music" loop>
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
     Ваш браузер не поддерживает аудио.
   </audio>
+
+  <!-- Кнопка -->
+  <button onclick="document.getElementById('bg-music').play()">▶ Воспроизвести музыку</button>
 </body>
 </html>
