@@ -38,20 +38,24 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.25);
     }
 
-    button {
-      margin-top: 30px;
-      font-size: 20px;
-      padding: 10px 20px;
-      background-color: #c71585;
+    .music-button {
+      margin-top: 40px;
+      font-size: 26px;
+      padding: 20px 40px;
+      background: linear-gradient(135deg, #ff69b4, #c71585);
       color: white;
       border: none;
-      border-radius: 8px;
+      border-radius: 50px;
       cursor: pointer;
-      transition: background 0.3s ease;
+      box-shadow: 0 0 15px rgba(199, 21, 133, 0.6);
+      transition: all 0.3s ease;
+      font-weight: bold;
     }
 
-    button:hover {
-      background-color: #a0146d;
+    .music-button:hover {
+      background: linear-gradient(135deg, #ff85c1, #b31372);
+      box-shadow: 0 0 25px rgba(199, 21, 133, 0.8);
+      transform: scale(1.05);
     }
   </style>
 </head>
@@ -83,11 +87,13 @@
 
   <!-- Музыка -->
   <audio id="bg-music" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    <source src="https://muztn.net/download/35353" type="audio/mpeg">
     Ваш браузер не поддерживает аудио.
   </audio>
 
-  <!-- Кнопка -->
-  <button onclick="document.getElementById('bg-music').play()">▶ Воспроизвести музыку</button>
+  <!-- Красивая большая кнопка -->
+  <button class="music-button" onclick="document.getElementById('bg-music').play()">
+    ▶ Воспроизвести музыку
+  </button>
 </body>
 </html>
