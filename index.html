@@ -1,99 +1,163 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>Для моей любимой</title>
-  <style>
-    body {
-      background-color: #fff0f5;
-      font-family: 'Georgia', serif;
-      color: #4b2e2e;
-      text-align: center;
-      padding: 50px;
-    }
-    h1 {
-      color: #c71585;
-      font-size: 48px;
-      margin-bottom: 30px;
-    }
-    .poem {
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 24px;
-      line-height: 1.8;
-      background-color: #fffafa;
-      padding: 30px;
-      border: 2px dashed #c71585;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(199,21,133,0.3);
-    }
-    img {
-      margin-top: 40px;
-      max-width: 450px;
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.25);
-    }
-    .music-button {
-      margin-top: 40px;
-      font-size: 26px;
-      padding: 20px 40px;
-      background: linear-gradient(135deg, #ff69b4, #c71585);
-      color: white;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(199,21,133,0.6);
-      transition: all 0.3s ease;
-      font-weight: bold;
-    }
-    .music-button:hover {
-      background: linear-gradient(135deg, #ff85c1, #b31372);
-      box-shadow: 0 0 25px rgba(199,21,133,0.8);
-      transform: scale(1.05);
-    }
-    iframe {
-      margin-top: 30px;
-      width: 90%;
-      max-width: 600px;
-      height: 340px;
-      border: none;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Слова">
+<meta name="theme-color" content="#f6f5f1">
+<title>Английские слова</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--tx:#1d1d1b;--mut:#6b6a66;--ac:#2a6df4;--ok:#1b8a4b;--bad:#c93030;--bd:#e2e0d9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171717;--card:#222;--tx:#f2f2ef;--mut:#9b9a96;--ac:#6b9bff;--ok:#4cc27d;--bad:#ff7070;--bd:#333}}
+:root[data-theme="dark"]{--bg:#171717;--card:#222;--tx:#f2f2ef;--mut:#9b9a96;--ac:#6b9bff;--ok:#4cc27d;--bad:#ff7070;--bd:#333}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:-apple-system,"Segoe UI",Roboto,sans-serif;display:flex;justify-content:center}
+main{width:100%;max-width:480px;padding:20px 16px}
+h1{font-size:20px;margin:0 0 4px}
+h2{font-size:17px;margin:0 0 12px}
+.sub{color:var(--mut);font-size:14px;margin-bottom:14px}
+.bar{height:8px;background:var(--bd);border-radius:4px;overflow:hidden;margin-bottom:6px}
+.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:28px 20px;margin-top:16px;text-align:center}
+.ru{font-size:28px;font-weight:600;margin-bottom:20px;overflow-wrap:anywhere}
+input{width:100%;font-size:20px;padding:14px;border-radius:12px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);text-align:center}
+button{width:100%;font-size:18px;padding:14px;margin-top:12px;border:0;border-radius:12px;background:var(--ac);color:#fff;font-weight:600;cursor:pointer}
+button.g{background:transparent;color:var(--mut);font-size:14px;font-weight:400}
+.res{margin-top:14px;font-size:18px;min-height:52px}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+.own{text-align:left;padding:20px}
+.own input{font-size:17px;padding:12px;text-align:left;margin-bottom:8px}
+.own .msg{font-size:14px;min-height:18px;color:var(--mut)}
+.own ul{list-style:none;margin:14px 0 0;padding:0}
+.own li{display:flex;align-items:center;gap:8px;padding:10px 0;border-top:1px solid var(--bd);font-size:16px}
+.own li span{flex:1;overflow-wrap:anywhere}
+.own li small{color:var(--mut)}
+.own li button{width:auto;margin:0;padding:6px 12px;font-size:14px;background:transparent;color:var(--bad);border:1px solid var(--bd)}
+.own .empty{color:var(--mut);font-size:14px;margin-top:12px}
+</style>
 </head>
 <body>
-  <h1>Для тебя, моя любимая❤️</h1>
+<main>
+<h1>Английские слова</h1>
+<div class="sub" id="stat"></div>
+<div class="bar"><i id="bar"></i></div>
+<div class="card">
+<div class="ru" id="ru"></div>
+<input id="inp" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="по-английски">
+<div class="res" id="res"></div>
+<button class="g" id="spk" style="display:none;margin-top:0;font-size:16px">🔊 Прослушать</button>
+<button id="btn">Проверить</button>
+</div>
 
-  <div class="poem">
-    <p>
-      Ты — свет в моём рассвете,<br>
-      Ты — нежность в каждом дне.<br>
-      В твоём тепле и взгляде<br>
-      Я снова влюблённый мне.
-    </p>
-    <p>
-      Ты — мой покой и буря,<br>
-      Уютный дом, родной приют.<br>
-      Я счастлив, что ты рядом —<br>
-      Мой мир, мой путь, мой труд.
-    </p>
-    <p>
-      Люблю тебя без меры,<br>
-      С тобой хочу идти.<br>
-      Ты — лучше всех на свете,<br>
-      Моя Айжан — всегда в пути 💖
-    </p>
-  </div>
+<div class="card own">
+<h2>Мои слова</h2>
+<input id="newRu" autocomplete="off" placeholder="Слово по-русски">
+<input id="newEn" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="Перевод по-английски">
+<div class="msg" id="msg"></div>
+<button id="add" style="margin-top:4px">Добавить</button>
+<ul id="list"></ul>
+<div class="empty" id="empty">Пока нет своих слов. Добавленные слова попадают в тренировку вместе с остальными.</div>
+</div>
 
-  <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80" alt="Букет роз для Айжан">
+<button class="g" id="reset">Начать заново</button>
+</main>
+<script>
+var BASE=[["жалоба","complaint"],["извинение","apology"],["сочувствие","empathy"],["удовлетворённость","satisfaction"],["помощь","assistance"],["просьба","request"],["требование","demand"],["справляться","handle"],["расстроенный","upset"],["тревога","anxiety"],["уверенный","confident"],["язык тела","body language"],["багаж","luggage"],["приоритетная посадка","priority boarding"],["премиальный сервис","premium service"],["особое обслуживание","VIP treatment"],["поставщик","supplier"],["покупатель","buyer"],["конкурент","competitor"],["образец","sample"],["убеждать","convince"],["водостойкий","water-resistant"],["счёт","bill"],["обучение","training"],["отраслевой журнал","trade journal"],["полезный","helpful"],["зрительный контакт","eye contact"],["личное внимание","personal attention"],["удовлетворять","satisfy"],["помогать","assist"],["тревожный","anxious"],["уверенность","confidence"],["норма багажа","baggage allowance"],["тариф","fare"],["рейс без излишеств","no-frills flight"],["бизнес-класс","business-class"],["вовремя","on time"],["пассажир","passenger"],["кресло в самолёте","seat"],["эксклюзивные опции","exclusive features"],["командная работа","teamwork"],["отдел","department"],["приоритет","priority"],["сложность, вызов","challenge"],["график","schedule"],["задержанный","delayed"],["нехватка","lack"],["обсуждать","discuss"],["предлагать идею","suggest"],["решение","solution"],["готовый сотрудничать","cooperative"],["улучшать","improve"],["гибкость","flexibility"],["технические навыки","technical skills"],["вводить, внедрять","introduce"],["ожидать","expect"],["руководство","management team"],["поощрять","encourage"],["не соглашаться","disagree"],["реагировать","respond"],["осознавать","realise"],["коммуникация","communication"],["организовывать","organise"],["трудности","difficulties"],["ответственность","responsibility"],["инструкции","instructions"],["постепенно","gradually"],["изначально","originally"],["увеличивать","increase"],["эффективный","effective"],["сотрудничество","cooperation"],["сотрудник","employee"],["улыбаться","smile"],["общаться","communicate"],["дополнительный","extra"],["известный","famous"],["отличный","excellent"],["место у окна","window seat"],["гость","guest"],["предлагать услугу","offer"],["немедленно","immediately"],["менеджер","manager"],["поставщик услуг","provider"],["забывать","forget"],["больной","sick"],["ассортимент","product range"],["сомневаться","doubt"],["грубый","rude"],["главный закупщик","chief buyer"],["требования","requirements"],["благодарить","thank"],["газета","newspaper"],["практичный","practical"],["дешёвый","cheap"],["дорогой","expensive"],["сумка для покупок","shopping bag"],["чехол для автокресла","car seat cover"],["экологичный","eco-friendly"],["платёжные данные","payment details"],["заказ","order"],["визитка","business card"],["рамка для фото","photo frame"],["отчёт","report"],["контракт","contract"],["качество","quality"],["объявление","advert"],["тема письма","subject line"],["приветствие","greeting"],["вступительное предложение","opening sentence"],["основная часть","main body"],["заключительное предложение","closing sentence"],["завершающая фраза письма","sign-off"],["с уважением","best regards"],["инспекция","inspection"],["оборудование","equipment"],["насос","pump"],["незначительная проблема","minor problem"],["выявлять","identify"],["ремонтировать","repair"],["бригада техобслуживания","maintenance team"],["отсутствующий","absent"],["экономика","economy"],["занятость","employment"],["инфраструктура","infrastructure"],["образование","education"],["окружающая среда","environment"],["нефть и газ","oil and gas"],["доходы","revenue"],["бюджет","budget"],["диверсифицировать","diversify"],["возобновляемая энергия","renewable energy"],["на мой взгляд","in my opinion"],["наслаждаться","enjoy"],["избегать","avoid"],["заканчивать","finish"],["продолжать","keep"],["возражать","mind"],["рассматривать","consider"],["практиковать","practice"],["отрицать","deny"],["хотеть","want"],["нуждаться","need"],["решать","decide"],["планировать","plan"],["надеяться","hope"],["соглашаться","agree"],["суметь, справиться","manage"],["отказываться","refuse"],["обещать","promise"],["учиться","learn"],["позволить себе","afford"],["ждать с нетерпением","look forward to"],["рынок труда","job market"],["не отставать","keep up"],["зарабатывать","earn"],["инвестиция","investment"],["возможности","opportunities"],["копить деньги","save money"],["переехать","move"],["путешествовать","travel"],["стипендия","scholarship"],["волонтёр","volunteer"],["новичок","beginner"],["мотивированный","motivated"],["искусственный интеллект","artificial intelligence"],["будущее","future"],["колесо","wheel"],["авария","accident"],["история","history"],["нефть","oil"],["древние времена","ancient times"],["продукт, товар","product"],["топливо","fuel"],["специалист","specialist"],["специалист по нефти","oil specialist"],["партнёр","partner"],["грузовик (брит.)","lorry"],["грузовик (амер.)","truck"],["транспорт (брит.)","transport"],["транспорт (амер.)","transportation"],["работа, должность","job"],["юрист","lawyer"],["химик","chemist"],["одеяло","blanket"],["бочка","barrel"],["лекарство","medicine"],["просачиваться","seep"],["жечь","burn"],["собирать","collect"],["перегонять","distil"],["находить","find"],["производить","produce"],["класть","put"],["бросать","throw"],["использовать","use"],["посещать","visit"],["видеть","see"],["сливать, осушать","drain"],["брать, отвезти","take"],["анализировать","analyse"],["сказать","say"],["хранить","store"],["изобретать","invent"],["бурить","drill"],["инвестировать","invest"],["работать","work"],["мог (прош. от can)","could"],["видел (прош.)","saw"],["взял (прош.)","took"],["сказал (прош.)","said"],["бросил (прош.)","threw"],["нашёл (прош.)","found"],["был (прош.)","was"]];
+var KEY="words_lvl_v1",OWN_KEY="words_own_v1";
+var own=[],W,lvl,cur=-1,checked=false;
 
-  <!-- Видео с песней -->
-  <iframe src="https://www.youtube.com/embed/la66NkEOCtk?rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+function load(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
+function store(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 
-  <button class="music-button" onclick="document.querySelector('iframe').scrollIntoView({behavior:'smooth'})">
-    ▶ Послушать «Дай»
-  </button>
+var o=load(OWN_KEY);
+if(Array.isArray(o))own=o.filter(function(p){return Array.isArray(p)&&typeof p[0]==="string"&&typeof p[1]==="string"});
+W=BASE.concat(own);
+lvl=W.map(function(){return 0});
+var s=load(KEY);
+if(Array.isArray(s)){for(var j=0;j<s.length&&j<W.length;j++)lvl[j]=+s[j]||0}
+
+function save(){store(KEY,lvl);store(OWN_KEY,own)}
+function $(id){return document.getElementById(id)}
+function norm(t){return t.toLowerCase().trim().replace(/\s+/g," ").replace(/ise\b/g,"ize")}
+function pick(){
+  var pool=[];
+  lvl.forEach(function(l,i){if(i!==cur&&l<3){for(var k=0;k<4-l;k++)pool.push(i)}});
+  if(!pool.length)return -1;
+  return pool[Math.floor(Math.random()*pool.length)];
+}
+function stat(){
+  var d=lvl.filter(function(l){return l>=3}).length;
+  $("stat").textContent="Выучено: "+d+" из "+W.length;
+  $("bar").style.width=(W.length?d/W.length*100:0)+"%";
+}
+function next(){
+  var n=pick(),ru=$("ru"),inp=$("inp"),res=$("res"),btn=$("btn");
+  stat();checked=false;res.textContent="";inp.value="";$("spk").style.display="none";
+  if(n<0){
+    var left=lvl.filter(function(l){return l<3}).length;
+    if(left===1&&cur>=0&&lvl[cur]<3){n=cur}else{cur=-1;ru.textContent="Все слова выучены!";inp.style.display="none";btn.style.display="none";return}
+  }
+  cur=n;ru.textContent=W[cur][0];inp.style.display="";btn.style.display="";btn.textContent="Проверить";inp.focus();
+}
+function act(){
+  var inp=$("inp"),res=$("res"),btn=$("btn");
+  if(checked){next();return}
+  if(cur<0)return;
+  var ok=norm(inp.value)===norm(W[cur][1]);
+  res.textContent="";
+  var sp=document.createElement("span");
+  if(ok){lvl[cur]=Math.min(3,lvl[cur]+1);sp.className="ok";sp.textContent="Верно!"}
+  else{lvl[cur]=0;sp.className="bad";sp.appendChild(document.createTextNode("Правильно: "));var b=document.createElement("b");b.textContent=W[cur][1];sp.appendChild(b)}
+  res.appendChild(sp);
+  save();stat();checked=true;btn.textContent="Дальше";$("spk").style.display="";say(W[cur][1]);
+}
+function say(t){try{var u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=0.9;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+
+/* ---- Мои слова ---- */
+function renderOwn(){
+  var ul=$("list");ul.textContent="";
+  $("empty").style.display=own.length?"none":"";
+  own.forEach(function(p,i){
+    var li=document.createElement("li"),sp=document.createElement("span"),sm=document.createElement("small"),del=document.createElement("button");
+    sp.textContent=p[0]+" — "+p[1]+" ";
+    sm.textContent=lvl[BASE.length+i]>=3?"✓ выучено":"";
+    sp.appendChild(sm);
+    del.textContent="Удалить";
+    del.onclick=function(){removeOwn(i)};
+    li.appendChild(sp);li.appendChild(del);ul.appendChild(li);
+  });
+}
+function addOwn(){
+  var ru=$("newRu").value.trim(),en=$("newEn").value.trim(),msg=$("msg");
+  if(!ru||!en){msg.textContent="Заполните оба поля.";return}
+  var dup=W.some(function(p){return norm(p[1])===norm(en)&&p[0].toLowerCase()===ru.toLowerCase()});
+  if(dup){msg.textContent="Такое слово уже есть.";return}
+  own.push([ru,en]);W.push([ru,en]);lvl.push(0);save();
+  $("newRu").value="";$("newEn").value="";msg.textContent="Добавлено: "+ru+" — "+en;
+  renderOwn();
+  if(cur<0)next();else stat();
+  $("newRu").focus();
+}
+function removeOwn(i){
+  var idx=BASE.length+i,p=own[i];
+  if(!confirm("Удалить «"+p[0]+" — "+p[1]+"»?"))return;
+  own.splice(i,1);W.splice(idx,1);lvl.splice(idx,1);save();
+  $("msg").textContent="";
+  renderOwn();
+  if(cur===idx){cur=-1;next()}else{if(cur>idx)cur--;stat()}
+}
+
+$("spk").onclick=function(){if(cur>=0)say(W[cur][1])};
+$("btn").onclick=act;
+$("inp").onkeydown=function(e){if(e.key==="Enter")act()};
+$("add").onclick=addOwn;
+$("newRu").onkeydown=function(e){if(e.key==="Enter")$("newEn").focus()};
+$("newEn").onkeydown=function(e){if(e.key==="Enter")addOwn()};
+$("reset").onclick=function(){lvl=W.map(function(){return 0});save();cur=-1;renderOwn();next()};
+renderOwn();
+next();
+</script>
 </body>
 </html>
