@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Глаголы">
+<meta name="apple-mobile-web-app-title" content="Слова">
 <meta name="theme-color" content="#f6f5f1">
-<title>Английские глаголы</title>
+<title>Английские слова</title>
 <style>
 :root{--bg:#f6f5f1;--card:#fff;--tx:#1d1d1b;--mut:#6b6a66;--ac:#2a6df4;--ok:#1b8a4b;--bad:#c93030;--bd:#e2e0d9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171717;--card:#222;--tx:#f2f2ef;--mut:#9b9a96;--ac:#6b9bff;--ok:#4cc27d;--bad:#ff7070;--bd:#333}}
@@ -18,34 +18,28 @@ main{width:100%;max-width:480px;padding:20px 16px}
 .top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 h1{font-size:20px;margin:0 0 4px}
 h2{font-size:17px;margin:0 0 12px}
-h3{font-size:15px;margin:18px 0 8px}
 .sub{color:var(--mut);font-size:14px;margin-bottom:14px}
 .bar{height:8px;background:var(--bd);border-radius:4px;overflow:hidden;margin-bottom:6px}
 .bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .3s}
 .card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:28px 20px;margin-top:16px;text-align:center}
 .ru{font-size:28px;font-weight:600;margin-bottom:20px;overflow-wrap:anywhere}
-label{display:block;text-align:left;font-size:13px;color:var(--mut);margin:0 0 4px 4px}
-.f{margin-bottom:10px}
-.f[hidden]{display:none}
-input{width:100%;font-size:20px;padding:12px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);text-align:center}
+input{width:100%;font-size:20px;padding:14px;border-radius:12px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);text-align:center}
 input.good{border-color:var(--ok);box-shadow:0 0 0 1px var(--ok)}
 input.wrong{border-color:var(--bad);box-shadow:0 0 0 1px var(--bad)}
 button{width:100%;font-size:18px;padding:14px;margin-top:12px;border:0;border-radius:12px;background:var(--ac);color:#fff;font-weight:600;cursor:pointer}
 button.g{background:transparent;color:var(--mut);font-size:14px;font-weight:400}
 #menuBtn{width:44px;height:44px;margin:0;padding:0;flex:none;font-size:22px;line-height:1;background:var(--card);color:var(--tx);border:1px solid var(--bd)}
 #menuBtn[aria-expanded="true"]{background:var(--ac);color:#fff;border-color:var(--ac)}
-.res{margin-top:8px;font-size:18px;min-height:52px;line-height:1.5}
-.res .forms{font-size:20px;font-weight:600}
+.res{margin-top:14px;font-size:18px;min-height:52px;line-height:1.5}
 .ok{color:var(--ok)}.bad{color:var(--bad)}
 .panel{text-align:left;padding:20px}
 .panel[hidden]{display:none}
 .panel input{font-size:17px;padding:12px;text-align:left;margin-bottom:8px}
-.hint{font-size:13px;color:var(--mut);margin:-2px 0 8px}
 .msg{font-size:14px;min-height:18px;color:var(--mut)}
-.panel ul{list-style:none;margin:0;padding:0;max-height:50vh;overflow-y:auto}
+.panel ul{list-style:none;margin:0;padding:0;max-height:55vh;overflow-y:auto}
 .panel li{display:flex;align-items:center;gap:8px;padding:10px 0;border-top:1px solid var(--bd);font-size:16px}
 .panel li span{flex:1;overflow-wrap:anywhere}
-.panel li small{color:var(--mut)}
+.panel li small{color:var(--ok)}
 .panel li button{width:auto;margin:0;padding:6px 12px;font-size:14px;background:transparent;color:var(--bad);border:1px solid var(--bd)}
 .panel .empty{color:var(--mut);font-size:14px;padding:10px 0}
 </style>
@@ -53,32 +47,22 @@ button.g{background:transparent;color:var(--mut);font-size:14px;font-weight:400}
 <body>
 <main>
 <div class="top">
-<div><h1>Английские глаголы</h1><div class="sub" id="stat"></div></div>
-<button id="menuBtn" aria-label="Меню слов" aria-expanded="false" aria-controls="panel">☰</button>
+<div><h1>Английские слова</h1><div class="sub" id="stat"></div></div>
+<button id="menuBtn" aria-label="Список слов" aria-expanded="false" aria-controls="panel">☰</button>
 </div>
 <div class="bar"><i id="bar"></i></div>
 
 <div class="card panel" id="panel" hidden>
-<h2>Добавить слово</h2>
-<input id="newRu" autocomplete="off" placeholder="Слово по-русски">
-<input id="new1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="1 форма (go)">
-<input id="new2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="2 форма (went) — необязательно">
-<input id="new3" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="3 форма (gone) — необязательно">
-<div class="hint">Для обычного слова, не глагола, заполните только 1 форму. Если вариантов два, пишите через «/», например learnt/learned.</div>
+<h2 id="listTitle">Все слова</h2>
+<input id="search" type="search" autocomplete="off" placeholder="Поиск по-русски или по-английски">
 <div class="msg" id="msg"></div>
-<button id="add" style="margin-top:4px">Добавить</button>
-
-<h3 id="listTitle">Все слова</h3>
-<input id="search" type="search" autocomplete="off" placeholder="Поиск">
 <ul id="list"></ul>
-<button class="g" id="restore" hidden>Вернуть удалённые готовые слова</button>
+<button class="g" id="restore" hidden>Вернуть удалённые слова</button>
 </div>
 
 <div class="card">
 <div class="ru" id="ru"></div>
-<div class="f"><label for="a0">1 форма (Infinitive)</label><input id="a0" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
-<div class="f" id="f1"><label for="a1">2 форма (Past Simple)</label><input id="a1" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
-<div class="f" id="f2"><label for="a2">3 форма (Past Participle)</label><input id="a2" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false"></div>
+<input id="inp" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="по-английски">
 <div class="res" id="res"></div>
 <button class="g" id="spk" style="display:none;margin-top:0;font-size:16px">🔊 Прослушать</button>
 <button id="btn">Проверить</button>
@@ -87,129 +71,533 @@ button.g{background:transparent;color:var(--mut);font-size:14px;font-weight:400}
 <button class="g" id="reset">Начать заново</button>
 </main>
 <script>
-/* [по-русски, 1 форма, 2 форма, 3 форма]; варианты через «/» */
+/* [по-русски, по-английски]; несколько верных вариантов — через «/» */
 var BASE=[
-["быть","be","was/were","been"],
-["бить","beat","beat","beaten"],
-["становиться","become","became","become"],
-["начинать","begin","began","begun"],
-["гнуть","bend","bent","bent"],
-["кусать","bite","bit","bitten"],
-["дуть","blow","blew","blown"],
-["ломать","break","broke","broken"],
-["приносить","bring","brought","brought"],
-["строить","build","built","built"],
-["гореть, жечь","burn","burnt/burned","burnt/burned"],
-["покупать","buy","bought","bought"],
-["ловить","catch","caught","caught"],
-["выбирать","choose","chose","chosen"],
-["приходить","come","came","come"],
-["стоить","cost","cost","cost"],
-["резать","cut","cut","cut"],
-["копать","dig","dug","dug"],
-["делать","do","did","done"],
-["рисовать","draw","drew","drawn"],
-["мечтать, видеть сны","dream","dreamt/dreamed","dreamt/dreamed"],
-["пить","drink","drank","drunk"],
-["водить (машину)","drive","drove","driven"],
-["есть, кушать","eat","ate","eaten"],
-["падать","fall","fell","fallen"],
-["кормить","feed","fed","fed"],
-["чувствовать","feel","felt","felt"],
-["драться, бороться","fight","fought","fought"],
-["находить","find","found","found"],
-["летать","fly","flew","flown"],
-["забывать","forget","forgot","forgotten"],
-["прощать","forgive","forgave","forgiven"],
-["замерзать","freeze","froze","frozen"],
-["получать","get","got","got/gotten"],
-["давать","give","gave","given"],
-["идти, ехать","go","went","gone"],
-["расти","grow","grew","grown"],
-["вешать, висеть","hang","hung","hung"],
-["иметь","have","had","had"],
-["слышать","hear","heard","heard"],
-["прятать","hide","hid","hidden"],
-["ударять","hit","hit","hit"],
-["держать","hold","held","held"],
-["причинять боль","hurt","hurt","hurt"],
-["хранить, сохранять","keep","kept","kept"],
-["знать","know","knew","known"],
-["класть, накрывать (на стол)","lay","laid","laid"],
-["вести, руководить","lead","led","led"],
-["учить, узнавать","learn","learnt/learned","learnt/learned"],
-["уходить, оставлять","leave","left","left"],
-["одалживать (кому-то)","lend","lent","lent"],
-["позволять","let","let","let"],
-["лежать","lie","lay","lain"],
-["зажигать","light","lit","lit"],
-["терять","lose","lost","lost"],
-["делать, изготавливать","make","made","made"],
-["значить, иметь в виду","mean","meant","meant"],
-["встречать","meet","met","met"],
-["платить","pay","paid","paid"],
-["класть, ставить","put","put","put"],
-["читать","read","read","read"],
-["ездить (верхом, на велосипеде)","ride","rode","ridden"],
-["звонить","ring","rang","rung"],
-["подниматься","rise","rose","risen"],
-["бежать","run","ran","run"],
-["сказать","say","said","said"],
-["видеть","see","saw","seen"],
-["продавать","sell","sold","sold"],
-["отправлять","send","sent","sent"],
-["устанавливать","set","set","set"],
-["трясти","shake","shook","shaken"],
-["светить, сиять","shine","shone","shone"],
-["стрелять","shoot","shot","shot"],
-["показывать","show","showed","shown"],
-["закрывать","shut","shut","shut"],
-["петь","sing","sang","sung"],
-["тонуть","sink","sank","sunk"],
-["сидеть","sit","sat","sat"],
-["спать","sleep","slept","slept"],
-["говорить (на языке)","speak","spoke","spoken"],
-["тратить","spend","spent","spent"],
-["стоять","stand","stood","stood"],
-["красть","steal","stole","stolen"],
-["приклеивать","stick","stuck","stuck"],
-["плавать","swim","swam","swum"],
-["брать","take","took","taken"],
-["обучать, преподавать","teach","taught","taught"],
-["рвать","tear","tore","torn"],
-["рассказывать","tell","told","told"],
-["думать","think","thought","thought"],
-["бросать","throw","threw","thrown"],
-["понимать","understand","understood","understood"],
-["просыпаться, будить","wake","woke","woken"],
-["носить (одежду)","wear","wore","worn"],
-["выигрывать","win","won","won"],
-["писать","write","wrote","written"]
+["мама", "mother/mom/mum"],
+["папа", "father/dad"],
+["брат", "brother"],
+["сестра", "sister"],
+["сын", "son"],
+["дочь", "daughter"],
+["родители", "parents"],
+["муж", "husband"],
+["жена", "wife"],
+["ребёнок", "child"],
+["дети", "children"],
+["бабушка", "grandmother/grandma"],
+["дедушка", "grandfather/grandpa"],
+["дядя", "uncle"],
+["тётя", "aunt"],
+["семья", "family"],
+["друг", "friend"],
+["сосед", "neighbour/neighbor"],
+["мужчина", "man"],
+["женщина", "woman"],
+["мальчик", "boy"],
+["девочка", "girl"],
+["человек", "person"],
+["люди", "people"],
+["гость", "guest"],
+["голова", "head"],
+["лицо", "face"],
+["глаз", "eye"],
+["ухо", "ear"],
+["нос", "nose"],
+["рот", "mouth"],
+["зуб", "tooth"],
+["волосы", "hair"],
+["шея", "neck"],
+["плечо", "shoulder"],
+["рука (кисть)", "hand"],
+["рука (от плеча)", "arm"],
+["палец", "finger"],
+["нога (от бедра)", "leg"],
+["нога (ступня)", "foot"],
+["спина", "back"],
+["сердце", "heart"],
+["кожа", "skin"],
+["тело", "body"],
+["здоровье", "health"],
+["болезнь", "illness/disease"],
+["боль", "pain"],
+["лекарство", "medicine"],
+["врач", "doctor"],
+["больница", "hospital"],
+["аптека", "pharmacy/chemist's/drugstore"],
+["еда", "food"],
+["вода", "water"],
+["хлеб", "bread"],
+["молоко", "milk"],
+["мясо", "meat"],
+["рыба", "fish"],
+["курица", "chicken"],
+["яйцо", "egg"],
+["сыр", "cheese"],
+["масло (сливочное)", "butter"],
+["сахар", "sugar"],
+["соль", "salt"],
+["рис", "rice"],
+["суп", "soup"],
+["яблоко", "apple"],
+["банан", "banana"],
+["апельсин", "orange"],
+["виноград", "grapes"],
+["арбуз", "watermelon"],
+["ягода", "berry"],
+["картофель", "potato"],
+["помидор", "tomato"],
+["огурец", "cucumber"],
+["морковь", "carrot"],
+["лук", "onion"],
+["фрукты", "fruit"],
+["овощи", "vegetables"],
+["чай", "tea"],
+["кофе", "coffee"],
+["сок", "juice"],
+["торт", "cake"],
+["мороженое", "ice cream"],
+["конфета", "sweet/candy"],
+["завтрак", "breakfast"],
+["обед", "lunch"],
+["ужин", "dinner"],
+["дом", "house"],
+["квартира", "flat/apartment"],
+["комната", "room"],
+["кухня", "kitchen"],
+["спальня", "bedroom"],
+["ванная", "bathroom"],
+["окно", "window"],
+["дверь", "door"],
+["стол", "table"],
+["стул", "chair"],
+["кровать", "bed"],
+["диван", "sofa"],
+["шкаф", "wardrobe/cupboard"],
+["лампа", "lamp"],
+["зеркало", "mirror"],
+["пол", "floor"],
+["стена", "wall"],
+["крыша", "roof"],
+["лестница", "stairs"],
+["сад", "garden"],
+["ключ", "key"],
+["часы (настенные)", "clock"],
+["телефон", "phone/telephone"],
+["компьютер", "computer"],
+["телевизор", "TV/television"],
+["холодильник", "fridge/refrigerator"],
+["тарелка", "plate"],
+["чашка", "cup"],
+["стакан", "glass"],
+["ложка", "spoon"],
+["вилка", "fork"],
+["нож", "knife"],
+["полотенце", "towel"],
+["мыло", "soap"],
+["одежда", "clothes"],
+["рубашка", "shirt"],
+["футболка", "T-shirt"],
+["брюки", "trousers/pants"],
+["джинсы", "jeans"],
+["платье", "dress"],
+["юбка", "skirt"],
+["куртка", "jacket"],
+["пальто", "coat"],
+["обувь", "shoes"],
+["шапка", "hat"],
+["носки", "socks"],
+["перчатки", "gloves"],
+["шарф", "scarf"],
+["сумка", "bag"],
+["часы (наручные)", "watch"],
+["очки", "glasses"],
+["город", "city/town"],
+["деревня", "village"],
+["улица", "street"],
+["дорога", "road"],
+["здание", "building"],
+["площадь", "square"],
+["мост", "bridge"],
+["магазин", "shop/store"],
+["рынок", "market"],
+["банк", "bank"],
+["школа", "school"],
+["университет", "university"],
+["библиотека", "library"],
+["музей", "museum"],
+["театр", "theatre/theater"],
+["кинотеатр", "cinema/movie theater"],
+["парк", "park"],
+["ресторан", "restaurant"],
+["кафе", "cafe/café"],
+["гостиница", "hotel"],
+["офис", "office"],
+["полиция", "police"],
+["мечеть", "mosque"],
+["вокзал, станция", "station"],
+["аэропорт", "airport"],
+["машина", "car"],
+["автобус", "bus"],
+["поезд", "train"],
+["самолёт", "plane/airplane/aeroplane"],
+["велосипед", "bicycle/bike"],
+["корабль", "ship"],
+["такси", "taxi"],
+["билет", "ticket"],
+["карта", "map"],
+["солнце", "sun"],
+["луна", "moon"],
+["звезда", "star"],
+["небо", "sky"],
+["облако", "cloud"],
+["дождь", "rain"],
+["снег", "snow"],
+["ветер", "wind"],
+["погода", "weather"],
+["море", "sea"],
+["река", "river"],
+["озеро", "lake"],
+["гора", "mountain"],
+["остров", "island"],
+["пляж", "beach"],
+["лес", "forest"],
+["дерево", "tree"],
+["цветок", "flower"],
+["трава", "grass"],
+["камень", "stone"],
+["огонь", "fire"],
+["воздух", "air"],
+["Земля (планета)", "Earth"],
+["весна", "spring"],
+["лето", "summer"],
+["осень", "autumn/fall"],
+["зима", "winter"],
+["животное", "animal"],
+["собака", "dog"],
+["кошка", "cat"],
+["лошадь", "horse"],
+["корова", "cow"],
+["овца", "sheep"],
+["свинья", "pig"],
+["птица", "bird"],
+["мышь", "mouse"],
+["медведь", "bear"],
+["волк", "wolf"],
+["лиса", "fox"],
+["кролик", "rabbit"],
+["насекомое", "insect"],
+["время", "time"],
+["день", "day"],
+["ночь", "night"],
+["утро", "morning"],
+["вечер", "evening"],
+["неделя", "week"],
+["месяц", "month"],
+["год", "year"],
+["час", "hour"],
+["минута", "minute"],
+["секунда", "second"],
+["сегодня", "today"],
+["завтра", "tomorrow"],
+["вчера", "yesterday"],
+["сейчас", "now"],
+["скоро", "soon"],
+["позже", "later"],
+["всегда", "always"],
+["никогда", "never"],
+["иногда", "sometimes"],
+["часто", "often"],
+["обычно", "usually"],
+["понедельник", "Monday"],
+["вторник", "Tuesday"],
+["среда", "Wednesday"],
+["четверг", "Thursday"],
+["пятница", "Friday"],
+["суббота", "Saturday"],
+["воскресенье", "Sunday"],
+["цвет", "colour/color"],
+["красный", "red"],
+["синий", "blue"],
+["зелёный", "green"],
+["жёлтый", "yellow"],
+["чёрный", "black"],
+["белый", "white"],
+["серый", "grey/gray"],
+["коричневый", "brown"],
+["оранжевый", "orange"],
+["розовый", "pink"],
+["фиолетовый", "purple"],
+["большой", "big/large"],
+["маленький", "small/little"],
+["хороший", "good"],
+["плохой", "bad"],
+["новый", "new"],
+["старый", "old"],
+["молодой", "young"],
+["горячий", "hot"],
+["холодный", "cold"],
+["тёплый", "warm"],
+["длинный", "long"],
+["короткий", "short"],
+["высокий", "tall/high"],
+["быстрый", "fast/quick"],
+["медленный", "slow"],
+["простой, лёгкий", "easy"],
+["трудный", "difficult/hard"],
+["красивый", "beautiful"],
+["богатый", "rich"],
+["бедный", "poor"],
+["счастливый", "happy"],
+["грустный", "sad"],
+["уставший", "tired"],
+["голодный", "hungry"],
+["сильный", "strong"],
+["слабый", "weak"],
+["чистый", "clean"],
+["грязный", "dirty"],
+["дешёвый", "cheap"],
+["дорогой", "expensive"],
+["полный", "full"],
+["пустой", "empty"],
+["громкий", "loud"],
+["тихий", "quiet"],
+["тяжёлый", "heavy"],
+["лёгкий (по весу)", "light"],
+["важный", "important"],
+["интересный", "interesting"],
+["скучный", "boring"],
+["опасный", "dangerous"],
+["безопасный", "safe"],
+["свободный", "free"],
+["занятый", "busy"],
+["правильный", "right/correct"],
+["неправильный", "wrong"],
+["близкий", "near/close"],
+["далёкий", "far"],
+["умный", "clever/smart"],
+["добрый", "kind"],
+["сердитый", "angry"],
+["вкусный", "delicious/tasty"],
+["больной", "ill/sick"],
+["здоровый", "healthy"],
+["другой, разный", "different"],
+["одинаковый", "same"],
+["готовый", "ready"],
+["открытый", "open"],
+["закрытый", "closed"],
+["быть", "be"],
+["иметь", "have"],
+["делать", "do"],
+["делать, создавать", "make"],
+["говорить", "speak/talk"],
+["сказать", "say"],
+["рассказывать", "tell"],
+["спрашивать", "ask"],
+["отвечать", "answer"],
+["знать", "know"],
+["думать", "think"],
+["понимать", "understand"],
+["помнить", "remember"],
+["забывать", "forget"],
+["хотеть", "want"],
+["любить", "love"],
+["нравиться", "like"],
+["видеть", "see"],
+["смотреть (на)", "look"],
+["смотреть (телевизор, фильм)", "watch"],
+["слушать", "listen"],
+["слышать", "hear"],
+["идти, ехать", "go"],
+["приходить", "come"],
+["бежать", "run"],
+["ходить пешком", "walk"],
+["сидеть", "sit"],
+["стоять", "stand"],
+["спать", "sleep"],
+["есть, кушать", "eat"],
+["пить", "drink"],
+["готовить (еду)", "cook"],
+["читать", "read"],
+["писать", "write"],
+["учиться", "study/learn"],
+["учить (преподавать)", "teach"],
+["работать", "work"],
+["играть", "play"],
+["петь", "sing"],
+["танцевать", "dance"],
+["плавать", "swim"],
+["покупать", "buy"],
+["продавать", "sell"],
+["платить", "pay"],
+["стоить", "cost"],
+["открывать", "open"],
+["закрывать", "close/shut"],
+["начинать", "begin/start"],
+["заканчивать", "finish/end"],
+["помогать", "help"],
+["давать", "give"],
+["брать", "take"],
+["приносить", "bring"],
+["нести", "carry"],
+["находить", "find"],
+["терять", "lose"],
+["искать", "look for/search"],
+["ждать", "wait"],
+["жить", "live"],
+["путешествовать", "travel"],
+["летать", "fly"],
+["водить (машину)", "drive"],
+["звонить", "call/phone"],
+["мыть", "wash"],
+["носить (одежду)", "wear"],
+["показывать", "show"],
+["пробовать", "try"],
+["использовать", "use"],
+["менять", "change"],
+["строить", "build"],
+["ломать", "break"],
+["чинить", "fix/repair"],
+["держать", "hold"],
+["падать", "fall"],
+["смеяться", "laugh"],
+["плакать", "cry"],
+["улыбаться", "smile"],
+["верить", "believe"],
+["надеяться", "hope"],
+["бояться", "be afraid/fear"],
+["решать", "decide"],
+["выбирать", "choose"],
+["встречать", "meet"],
+["посещать", "visit"],
+["отправлять", "send"],
+["получать", "get/receive"],
+["оставаться", "stay"],
+["уходить, уезжать", "leave"],
+["возвращаться", "return/come back"],
+["отдыхать", "rest"],
+["просыпаться", "wake up"],
+["вставать", "get up"],
+["объяснять", "explain"],
+["переводить", "translate"],
+["повторять", "repeat"],
+["считать (числа)", "count"],
+["рисовать", "draw"],
+["толкать", "push"],
+["тянуть", "pull"],
+["резать", "cut"],
+["убирать, чистить", "clean up/clean"],
+["сравнивать", "compare"],
+["соглашаться", "agree"],
+["обещать", "promise"],
+["благодарить", "thank"],
+["приглашать", "invite"],
+["заказывать", "order"],
+["бронировать", "book"],
+["работа", "job/work"],
+["деньги", "money"],
+["вопрос", "question"],
+["ответ", "answer"],
+["слово", "word"],
+["язык (речь)", "language"],
+["книга", "book"],
+["ручка", "pen"],
+["карандаш", "pencil"],
+["бумага", "paper"],
+["письмо", "letter"],
+["урок", "lesson"],
+["учитель", "teacher"],
+["ученик, студент", "student/pupil"],
+["медсестра", "nurse"],
+["водитель", "driver"],
+["повар", "cook/chef"],
+["инженер", "engineer"],
+["продавец", "seller/shop assistant"],
+["полицейский", "police officer/policeman"],
+["страна", "country"],
+["мир (вселенная)", "world"],
+["мир (не война)", "peace"],
+["жизнь", "life"],
+["имя", "name"],
+["возраст", "age"],
+["день рождения", "birthday"],
+["подарок", "present/gift"],
+["праздник", "holiday"],
+["игра", "game"],
+["музыка", "music"],
+["песня", "song"],
+["фильм", "film/movie"],
+["картина", "picture/painting"],
+["фотография", "photo/photograph"],
+["история (рассказ)", "story"],
+["новости", "news"],
+["идея", "idea"],
+["проблема", "problem"],
+["ошибка", "mistake"],
+["причина", "reason"],
+["помощь", "help"],
+["правда", "truth"],
+["ложь", "lie"],
+["цена", "price"],
+["размер", "size"],
+["номер, число", "number"],
+["часть", "part"],
+["конец", "end"],
+["начало", "beginning/start"],
+["место", "place"],
+["путь, способ", "way"],
+["сторона", "side"],
+["вещь", "thing"],
+["пример", "example"],
+["выбор", "choice"],
+["шанс", "chance"],
+["опыт", "experience"],
+["звук", "sound"],
+["голос", "voice"],
+["да", "yes"],
+["нет", "no"],
+["пожалуйста", "please"],
+["спасибо", "thank you/thanks"],
+["извините", "sorry/excuse me"],
+["привет", "hello/hi"],
+["до свидания", "goodbye/bye"],
+["здесь", "here"],
+["там", "there"],
+["где", "where"],
+["когда", "when"],
+["почему", "why"],
+["что", "what"],
+["кто", "who"],
+["как", "how"],
+["сколько", "how much/how many"],
+["который", "which"],
+["очень", "very"],
+["тоже", "too/also"],
+["снова", "again"],
+["уже", "already"],
+["вместе", "together"],
+["может быть", "maybe/perhaps"],
+["конечно", "of course"]
 ];
-var LVL_KEY="verbs_lvl_v1",OWN_KEY="verbs_own_v1",HID_KEY="verbs_hidden_v1";
-var own=[],hidden=[],lv={},W=[],cur=-1,curKey=null,checked=false;
+var LVL_KEY="en_words_lvl_v1",HID_KEY="en_words_hidden_v1";
+var hidden=[],lv={},W=[],cur=-1,curKey=null,checked=false;
 
 function load(k){try{return JSON.parse(localStorage.getItem(k)||"null")}catch(e){return null}}
 function store(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
 function $(id){return document.getElementById(id)}
-function norm(t){return t.toLowerCase().trim().replace(/\s+/g," ").replace(/ise\b/g,"ize")}
+function norm(t){return t.toLowerCase().replace(/[’`]/g,"'").trim().replace(/\s+/g," ").replace(/ise\b/g,"ize")}
 function key(p){return p[0]+"|"+p[1]}
-function forms(p){return p.slice(1).filter(function(x){return x})}
-function isWord(p){return Array.isArray(p)&&p.length>=2&&p.every(function(x){return typeof x==="string"})&&p[0]&&p[1]}
-/* ответ верный, если совпал с любым вариантом или со всей записью */
+function show(en){return en.split("/").join(" / ")}
+/* ответ верный, если совпал с любым из вариантов */
 function match(input,answer){
-  var a=norm(input).replace(/\s*[\/,]\s*/g,"/");
-  if(!a)return false;
-  var full=norm(answer).replace(/\s*\/\s*/g,"/");
-  return a===full||full.split("/").indexOf(a)>=0;
+  var a=norm(input);if(!a)return false;
+  return norm(answer).split("/").some(function(v){return v.trim()===a});
 }
 
-var o=load(OWN_KEY);if(Array.isArray(o))own=o.filter(isWord);
 var h=load(HID_KEY);if(Array.isArray(h))hidden=h.filter(function(x){return typeof x==="string"});
 var l=load(LVL_KEY);if(l&&typeof l==="object"&&!Array.isArray(l))lv=l;
-function build(){W=BASE.filter(function(p){return hidden.indexOf(key(p))<0}).concat(own)}
+function build(){W=BASE.filter(function(p){return hidden.indexOf(key(p))<0})}
 function lev(i){return lv[key(W[i])]||0}
-function save(){store(LVL_KEY,lv);store(OWN_KEY,own);store(HID_KEY,hidden)}
+function save(){store(LVL_KEY,lv);store(HID_KEY,hidden)}
 function findCur(){cur=W.findIndex(function(x){return key(x)===curKey})}
 build();
 
@@ -225,129 +613,84 @@ function stat(){
   $("stat").textContent="Выучено: "+d+" из "+W.length;
   $("bar").style.width=(W.length?d/W.length*100:0)+"%";
 }
-function inputs(){return [$("a0"),$("a1"),$("a2")]}
 function next(){
-  var n=pick(),ru=$("ru"),res=$("res"),btn=$("btn");
-  stat();checked=false;res.textContent="";$("spk").style.display="none";
-  inputs().forEach(function(x){x.value="";x.className="";x.readOnly=false});
+  var n=pick(),ru=$("ru"),inp=$("inp"),res=$("res"),btn=$("btn");
+  stat();checked=false;res.textContent="";inp.value="";inp.className="";inp.readOnly=false;$("spk").style.display="none";
   if(n<0){
     if(cur>=0&&cur<W.length&&lev(cur)<3){n=cur}
     else{
       cur=-1;curKey=null;
-      ru.textContent=W.length?"Все слова выучены!":"Нет слов. Добавьте их через меню ☰";
-      $("a0").parentNode.hidden=true;$("f1").hidden=true;$("f2").hidden=true;
-      btn.style.display="none";$("delCur").style.display="none";return;
+      ru.textContent=W.length?"Все слова выучены!":"Все слова удалены. Верните их через меню ☰";
+      inp.style.display="none";btn.style.display="none";$("delCur").style.display="none";return;
     }
   }
   cur=n;curKey=key(W[cur]);
-  var p=W[cur];
-  ru.textContent=p[0];
-  $("a0").parentNode.hidden=false;
-  $("f1").hidden=!p[2];$("f2").hidden=!p[3];
-  btn.style.display="";$("delCur").style.display="";btn.textContent="Проверить";
-  if($("panel").hidden)$("a0").focus();
+  ru.textContent=W[cur][0];
+  inp.style.display="";btn.style.display="";$("delCur").style.display="";btn.textContent="Проверить";
+  if($("panel").hidden)inp.focus();
 }
 function act(){
   if(checked){next();return}
   if(cur<0)return;
-  var p=W[cur],k=key(p),ins=inputs(),all=true,res=$("res");
-  for(var i=0;i<3;i++){
-    if(!p[i+1])continue;
-    var ok=match(ins[i].value,p[i+1]);
-    ins[i].className=ok?"good":"wrong";ins[i].readOnly=true;
-    if(!ok)all=false;
-  }
+  var p=W[cur],k=key(p),inp=$("inp"),res=$("res"),ok=match(inp.value,p[1]);
+  inp.className=ok?"good":"wrong";inp.readOnly=true;
   res.textContent="";
-  var head=document.createElement("div");
-  if(all){lv[k]=Math.min(3,(lv[k]||0)+1);head.className="ok";head.textContent="Верно!"}
-  else{delete lv[k];head.className="bad";head.textContent="Правильно:"}
-  res.appendChild(head);
-  if(!all||forms(p).length>1){
-    var f=document.createElement("div");f.className="forms";
-    f.textContent=forms(p).join(" — ");res.appendChild(f);
-  }
+  var head=document.createElement("div"),ans=document.createElement("b");
+  ans.textContent=show(p[1]);
+  if(ok){lv[k]=Math.min(3,(lv[k]||0)+1);head.className="ok";head.textContent="Верно! "}
+  else{delete lv[k];head.className="bad";head.textContent="Правильно: "}
+  head.appendChild(ans);res.appendChild(head);
   save();stat();checked=true;$("btn").textContent="Дальше";$("spk").style.display="";
-  say(p);$("btn").focus();
+  say(p[1]);$("btn").focus();
 }
-function say(p){try{var u=new SpeechSynthesisUtterance(forms(p).map(function(x){return x.replace(/\//g," or ")}).join(", "));u.lang="en-US";u.rate=0.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
+function say(en){try{var u=new SpeechSynthesisUtterance(en.split("/")[0]);u.lang="en-US";u.rate=0.85;speechSynthesis.cancel();speechSynthesis.speak(u)}catch(e){}}
 
-/* меню: добавить / удалить */
+/* меню: список, поиск, удаление */
 function renderList(){
   var ul=$("list"),q=$("search").value.trim().toLowerCase();ul.textContent="";
   $("listTitle").textContent="Все слова ("+W.length+")";
   var shown=0;
   W.forEach(function(p,i){
-    if(q&&p.join(" ").toLowerCase().indexOf(q)<0)return;
+    if(q&&(p[0]+" "+p[1]).toLowerCase().indexOf(q)<0)return;
     shown++;
     var li=document.createElement("li"),sp=document.createElement("span"),sm=document.createElement("small"),del=document.createElement("button");
-    sp.textContent=p[0]+" — "+forms(p).join(" · ")+" ";
-    sm.textContent=(own.some(function(x){return key(x)===key(p)})?"моё ":"")+(lev(i)>=3?"✓":"");
+    sp.textContent=show(p[1])+" — "+p[0]+" ";
+    sm.textContent=lev(i)>=3?"✓":"";
     sp.appendChild(sm);
     del.textContent="Удалить";
     del.onclick=function(){removeWord(i)};
     li.appendChild(sp);li.appendChild(del);ul.appendChild(li);
   });
   if(!shown){var e=document.createElement("li");e.className="empty";e.textContent=q?"Ничего не найдено":"Слов нет";ul.appendChild(e)}
-  var r=$("restore");r.hidden=!hidden.length;r.textContent="Вернуть удалённые готовые слова ("+hidden.length+")";
-}
-function addWord(){
-  var ru=$("newRu").value.trim(),v1=$("new1").value.trim(),v2=$("new2").value.trim(),v3=$("new3").value.trim(),msg=$("msg");
-  if(!ru||!v1){msg.textContent="Заполните слово по-русски и 1 форму.";return}
-  if(v3&&!v2){msg.textContent="Заполните 2 форму или оставьте 3 форму пустой.";return}
-  var p=[ru,v1];if(v2)p.push(v2);if(v3)p.push(v3);
-  var k=key(p);
-  if(W.some(function(x){return key(x).toLowerCase()===k.toLowerCase()})){msg.textContent="Такое слово уже есть.";return}
-  var hi=hidden.indexOf(k);
-  if(hi>=0)hidden.splice(hi,1);else own.push(p);
-  build();save();
-  ["newRu","new1","new2","new3"].forEach(function(id){$(id).value=""});
-  msg.textContent="Добавлено: "+ru+" — "+forms(p).join(" · ");
-  renderList();
-  if(cur<0&&!checked)next();else{findCur();stat()}
-  $("newRu").focus();
+  var r=$("restore");r.hidden=!hidden.length;r.textContent="Вернуть удалённые слова ("+hidden.length+")";
 }
 function removeWord(i){
   var p=W[i],k=key(p);
-  if(!confirm("Удалить «"+p[0]+" — "+forms(p).join(" · ")+"»?"))return;
+  if(!confirm("Удалить «"+show(p[1])+" — "+p[0]+"»?"))return;
   var wasCur=(k===curKey);
-  var oi=own.findIndex(function(x){return key(x)===k});
-  if(oi>=0)own.splice(oi,1);else hidden.push(k);
-  delete lv[k];
+  hidden.push(k);delete lv[k];
   build();save();
-  $("msg").textContent="Удалено: "+p[0];
+  $("msg").textContent="Удалено: "+show(p[1])+" — "+p[0];
   if(wasCur){cur=-1;next()}else{findCur();stat()}
-  renderList();
+  if(!$("panel").hidden)renderList();
 }
 $("restore").onclick=function(){
-  if(!confirm("Вернуть "+hidden.length+" удалённых готовых слов?"))return;
+  if(!confirm("Вернуть "+hidden.length+" удалённых слов?"))return;
   hidden=[];build();save();findCur();
-  $("msg").textContent="Готовые слова возвращены.";
+  $("msg").textContent="Удалённые слова возвращены.";
   renderList();if(cur<0)next();else stat();
 };
 $("menuBtn").onclick=function(){
   var p=$("panel"),open=p.hidden;
   p.hidden=!open;this.setAttribute("aria-expanded",open?"true":"false");
-  if(open){$("msg").textContent="";renderList();$("newRu").focus()}
+  if(open){$("msg").textContent="";renderList()}
 };
 
-/* Enter: к следующему полю, на последнем — проверить */
-inputs().forEach(function(x,i){
-  x.onkeydown=function(e){
-    if(e.key!=="Enter")return;
-    e.preventDefault();
-    if(checked){next();return}
-    var ins=inputs();
-    for(var j=i+1;j<3;j++){if(!ins[j].parentNode.hidden){ins[j].focus();return}}
-    act();
-  };
-});
-$("spk").onclick=function(){if(cur>=0)say(W[cur])};
+$("spk").onclick=function(){if(cur>=0)say(W[cur][1])};
 $("btn").onclick=act;
 $("delCur").onclick=function(){if(cur>=0)removeWord(cur)};
-$("add").onclick=addWord;
+$("inp").onkeydown=function(e){if(e.key==="Enter"){e.preventDefault();act()}};
 $("search").oninput=renderList;
-["newRu","new1","new2"].forEach(function(id,i,arr){$(id).onkeydown=function(e){if(e.key==="Enter"){e.preventDefault();$(["new1","new2","new3"][i]).focus()}}});
-$("new3").onkeydown=function(e){if(e.key==="Enter"){e.preventDefault();addWord()}};
 $("reset").onclick=function(){lv={};save();cur=-1;if(!$("panel").hidden)renderList();next()};
 next();
 </script>
